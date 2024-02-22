@@ -7,7 +7,7 @@ import plexmapState from "../store/statePlexmap";
 import plexmapMutations from "../store/mutationsPlexmap";
 
 export default {
-    name: "PlexmapButton",
+    name: "PlexmapViewer",
     components: {
         ControlIcon,
     },
