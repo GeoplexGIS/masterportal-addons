@@ -1,7 +1,9 @@
-This repo is supposed to store multiple addons for "masterportal".
+This repo contains the Plexmap Viewer Addon for Masterportal.
 
-If you want to use one of the addons located in this directory copy the addon folder and paste it into
-addon section of masterportal.
+This addon simply provides buttons to toggle a Plexmap 3D View inside the Masterportal.
 
-Sturcture of Addon Architecture
+To Register the Buttons please import PlexmapViewer to the indexControl.js 
+Additonally you have to add "plexmapButton":true to the controls section of your config.json.
 
+After these two steps the button to toggle Plexmaps Viewer should be available in the top right corner 
+in the controll section.
