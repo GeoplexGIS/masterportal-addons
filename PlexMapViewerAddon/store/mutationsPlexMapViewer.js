@@ -1,5 +1,7 @@
 import plexmapState from "./statePlexmap";
 
+const config = require("../config.js")
+
 const plexmapMutations = {
     setupPlexmap () {
         this.createPlexmapScript();
@@ -12,7 +14,7 @@ const plexmapMutations = {
      */
     createPlexmapScript () {
         const plexmap_api = document.createElement("script");
-        plexmap_api.setAttribute("src", "https://berlinfk.bf.geoplex.de/static/api/plexmap-api.js");
+        plexmap_api.setAttribute("src", config.API_URL);
         plexmap_api.setAttribute("type", "text/javascript");
         
         document.head.appendChild(plexmap_api);
@@ -123,9 +125,9 @@ const plexmapMutations = {
      */
     initialize (coords, elevation) {
         plexmapState.viewer = new PlexMap.Viewer ({
-            viewSrc: "https://berlinfk.bf.geoplex.de/viewer/view/3d/",
+            viewSrc: config.VIEW_SRC,
             targetElemId: "plex-map-viewer",
-            layout: "minimal",
+            layout: config.LAYOUT,
             vista: {
                 lon: coords[0],
                 lat: coords[1],
