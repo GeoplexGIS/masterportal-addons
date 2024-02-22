@@ -20,6 +20,7 @@ To install the PlexMap Masterportal Addon, you have to clone it to your Masterpo
 To Register the Buttons please import PlexmapViewer to the indexControl.js 
 
 .. code-block:: bash
+    
     import PlexmapViewer from "../../../addons/plexMapViewer/components/PlexmapViewer.vue";
     ....
     state: {
