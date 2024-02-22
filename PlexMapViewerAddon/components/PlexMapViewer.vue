@@ -2,7 +2,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import proj4 from "proj4";
-import ControlIcon from "../../ControlIcon.vue";
+import ControlIcon from "'../../../src/modules/controls/ControlIcon.vue";
 import plexmapState from "../store/statePlexmap";
 import plexmapMutations from "../store/mutationsPlexmap";
 
