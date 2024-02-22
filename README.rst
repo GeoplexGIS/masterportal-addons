@@ -52,6 +52,8 @@ The button to toggle the Plexmaps Viewer should be available in the top right co
 of the controll section it is currently displayed by a wrentch icon.
 
 
+The PlexMap Masterportal Addon is now installed and ready to use.
+
 Configuration
 =====
 The PlexMap Masterportal Addon needs to be configured so it can display your PlaxMap Instanz correctly.
@@ -68,9 +70,6 @@ To do so, you have to add some information to the config.js file included in thi
 * The API_URL is the path to the PlexMap API. 
 * The VIEW_SRC is the path to the PlexMap View. 
 * The LAYOUT is the layout style of the PlexMap View. (**Recomendet is minimal**)
-
-
-The PlexMap Masterportal Addon is now installed and ready to use.
 
 Troubleschooting
 =====
