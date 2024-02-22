@@ -1,123 +1,81 @@
+
 <script>
-import ToolTemplate from "../../ToolTemplate.vue";
-import { mapGetters, mapMutations } from "vuex";
-import getters from "../store/gettersPlexMapViewer";
-import mutations from "../store/mutationsPlexMapViewer";
+import { mapGetters, mapActions } from "vuex";
+import proj4 from "proj4";
+import ControlIcon from "../../ControlIcon.vue";
+import plexmapState from "../store/statePlexmap";
+import plexmapMutations from "../store/mutationsPlexmap";
 
 export default {
-    name: "PlexMapViewer",
+    name: "PlexmapButton",
     components: {
-        ToolTemplate
+        ControlIcon,
     },
-    data  ()
-    {
 
-        return {
-            pmvScript: null,
-            containerGen: false,
-            pmvLoaded : false,
-        }
-    },
-    created() {
-        this.$on("close", this.close);
-    },
-    mounted() {
-        this.pmvScript = document.createElement('script');
-        this.pmvScript.setAttribute('src', 'https://demo2.q.geoplex.de/static/api/plexmap-api.js');
-
-        this.pmvScript.onload = () => {
-                pmvLoaded = true;
-            };
-        document.head.appendChild(this.pmvScript);
-    },
     computed: {
-        ...mapGetters("Tools/PlexMapViewer", Object.keys(getters)),
-        ...mapGetters("Map", ["scales"]),
-        scale: {
-            get () {
-                return this.$store.state.Map.scale;
-            },
-            set (value) {
-                this.$store.commit("Map/setScale", value);
-            }
+        ...mapGetters("Maps", ["projection", "scale", "getView"]),  
+    },
+
+    data () {
+        return {
+            plexmapState: plexmapState
         }
     },
+    created () {
+        plexmapMutations.setupPlexmap()
+    },
+
     methods: {
-        ...mapMutations("Tools/PlexMapViewer", Object.keys(mutations)),
-        container () {
-            this.containerGen = true;
+        ...mapActions("Maps", ["setCenter", "setZoomLevel"]),
 
-            return '<div id="viewer-container"></div>'
+        togglePlexmapView () {
+            const center = Radio.request("MapView", "getCenter")
+            const coordinates = proj4(proj4(this.projection.getCode()), 'EPSG:4326', center)
+
+            const resolution = this.getView.getResolution()
+
+            plexmapMutations.togglePlexmap(coordinates, resolution)
         },
 
-        close () {
-            this.setActive(false);
-
-            const model = Radio.request("ModelList", "getModelByAttributes", {id: this.$store.state.Tools.PlexMapViewer.id});
+        async toggleMapView () {
+            const res = await plexmapMutations.toggleMapView()
             
+            console.log(res)
+            const center = proj4('EPSG:4326', proj4(this.projection.getCode()), res.coords)
+            console.log(center)
 
-            if (model) {
-                model.set("isActive", false);
-            }
-        }
-    },
-    watch: {
-        containerGen: {
-            handler: function () {
-                
-                if (this.containerGen) {
-                    let pmViewer = new PlexMap.Viewer({
-                        viewSrc: "https://demo2.q.geoplex.de/v/street360-user-conference/",
-                        targetElemId: "viewer-container",
-                        layout: "minimal",
-                    });
-                    console.log(pmViewer);
-                    this.containerGen = false;
-                }
-
-            },
+            this.setZoomLevel(res.zoomLevel);
+            this.setCenter(center);
         },
-        pmvScript:{
-            handler: function () {
-                console.log("PlexMapViewer API loaded");
-            },
-        } 
-            
     },
-    
+
 
 };
 </script>
 
-<template lang="html">
-    <!-- <ToolTemplate
-        :title="$t(name)"
-        :icon="icon"
-        :active="active"
-        :render-to-window="renderToWindow"
-        :resizable-window="resizableWindow"
-        :deactivateGFI="deactivateGFI"
-    > -->
-        <!-- <template> -->
-            <div v-html="container()" />
-        <!-- </template> -->
-    <!-- </ToolTemplate> -->
+<template>
+    <div
+    >
+        <ControlIcon
+            icon-name="bi-wrench"
+            :title="$t(`common:menu.controlls.plexmapButton`)"
+            :on-click="togglePlexmapView"
+            :hidden=!plexmapState.hidden
+        />
+        <ControlIcon
+            icon-name="bi-arrow-left"
+            :title="$t(`common:menu.controlls.plexmapButton`)"
+            :on-click="toggleMapView"
+            :hidden=plexmapState.hidden
+        />
+    </div>
 </template>
 
 <style lang="scss">
-    @import "~variables";
-    #viewer-container {
-          width: 1280px;
-          height: 720px;
-          border: 1px solid lightgray;
-          margin: 20px;
-    }
-
-    label {
-        margin-top: 7px;
-    }
-
-    #scale-switcher-select {
-        border: 2px solid $secondary;
+    #plex-map-viewer {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
     }
 </style>
