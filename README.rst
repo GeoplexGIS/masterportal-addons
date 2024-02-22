@@ -21,9 +21,7 @@ To Register the Buttons please import PlexmapViewer to the indexControl.js
 
 .. code-block:: bash
     import PlexmapViewer from "../../../addons/plexMapViewer/components/PlexmapViewer.vue";
-
     ....
-
     state: {
         componentMap: {
             plexmapViewer : PlexmapViewer,
