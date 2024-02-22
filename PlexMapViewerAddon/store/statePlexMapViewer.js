@@ -1,12 +1,12 @@
-const state = {
-    active: false,
-    id: "plexMapViewer",
-    name: "common:menu.tools.plexMapViewer",
-    icon: "fa fa-map",
-    renderToWindow: true,
-    resizableWindow: true,
-    isVisibleInMenu: true,
-    deactivateGFI: false
-}
+import Vue from 'vue';
 
-export default state;
+const plexmapState = Vue.observable({
+    ELEV_FACTOR : 3.5360 / 2.0,
+    hidden  : true,
+    inital  : true,
+    plexmap : null,
+    viewer  : null,
+    map     : null
+});
+
+export default plexmapState;
