@@ -20,7 +20,7 @@ To install the PlexMap Masterportal Addon, you have to clone it to your Masterpo
 To Register the Buttons please import PlexmapViewer to the indexControl.js 
 
 .. code-block:: bash
-    
+
     import PlexmapViewer from "../../../addons/plexMapViewer/components/PlexmapViewer.vue";
     ....
     state: {
@@ -34,7 +34,7 @@ To Register the Buttons please import PlexmapViewer to the indexControl.js
         }
     }
 
-Additonally you have to add "plexmapViewer":true to the controls section of your config.json.
+Additionally you have to add "plexmapViewer":true to the controls section of your config.json.
 
 .. code-block:: bash
 
@@ -48,14 +48,14 @@ Additonally you have to add "plexmapViewer":true to the controls section of your
     }
 
 The button to toggle the Plexmaps Viewer should be available in the top right corner 
-of the controll section it is currently displayed by a wrentch icon.
+of the control section it is displayed by the PlexMap icon.
 
 
 The PlexMap Masterportal Addon is now installed and ready to use.
 
 Configuration
 =====
-The PlexMap Masterportal Addon needs to be configured so it can display your PlaxMap Instanz correctly.
+The PlexMap Masterportal Addon needs to be configured so it can display your PlaxMap instance correctly.
 To do so, you have to add some information to the config.js file included in this repository.
 
 .. code-block:: bash
@@ -68,7 +68,7 @@ To do so, you have to add some information to the config.js file included in thi
 
 * The API_URL is the path to the PlexMap API. 
 * The VIEW_SRC is the path to the PlexMap View. 
-* The LAYOUT is the layout style of the PlexMap View. (**Recomendet is minimal**)
+* The LAYOUT is the layout style of the PlexMap View. (**Recommended is minimal**)
 
 Troubleschooting
 =====
