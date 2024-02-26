@@ -13,8 +13,7 @@ To install the PlexMap Masterportal Addon, you have to clone it to your Masterpo
 .. code-block:: bash
 
     cd /path/to/your/masterportal/addons
-    git clone https://git.geoplex.de/plexmap/masterportal-addons.git
-
+    git clone https://github.com/GeoplexGIS/masterportal-addons.git
 
 
 To Register the Buttons please import PlexmapViewer to the indexControl.js 
