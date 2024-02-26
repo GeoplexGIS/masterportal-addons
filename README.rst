@@ -61,8 +61,8 @@ To do so, you have to add some information to the config.js file included in thi
 .. code-block:: bash
 
     const Config = {
-        API_URL  : 'path/to/your/plexmap/api',
-        VIEW_SRC : 'path/to/your/plexmap/view',
+        API_URL  : 'https://host/static/api/plexmap-api.js',
+        VIEW_SRC : 'https://host/v/plexmap-view/',
         LAYOUT   : 'minimal',
     }
 
